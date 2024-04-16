@@ -62,7 +62,7 @@ extern "C" {
         return 0;
 		  }
     
-    if (attributes.memoryType==hipMemoryTypeDevice) return 1;
+    if (attributes.type==hipMemoryTypeDevice) return 1;
     else return 0;
   }
   

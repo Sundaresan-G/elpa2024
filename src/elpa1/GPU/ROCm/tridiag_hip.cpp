@@ -528,7 +528,7 @@ void hip_set_e_vec_scale_set_one_store_v_row_FromC(T_real *e_vec_dev, T *vrl_dev
 
   if (error == hipSuccess) 
     {
-    if (attributes.memoryType == hipMemoryTypeHost) 
+    if (attributes.type == hipMemoryTypeHost) 
       {
       T xf_host_value = *xf_host_or_dev;
 #ifdef WITH_GPU_STREAMS
@@ -544,7 +544,7 @@ void hip_set_e_vec_scale_set_one_store_v_row_FromC(T_real *e_vec_dev, T *vrl_dev
         if (hiperr != hipSuccess) printf("Error in executing hip_set_e_vec_scale_set_one_store_v_row_kernel: %s\n",hipGetErrorString(hiperr));
         }
       }
-    else if (attributes.memoryType == hipMemoryTypeDevice) 
+    else if (attributes.type == hipMemoryTypeDevice) 
       {
 #ifdef WITH_GPU_STREAMS
       hip_set_e_vec_scale_set_one_store_v_row_kernel<<<blocks,threadsPerBlock,0,my_stream>>>(e_vec_dev, vrl_dev, a_dev, v_row_dev, tau_dev, xf_host_or_dev,
@@ -697,7 +697,7 @@ void hip_store_u_v_in_uv_vu_FromC(T *vu_stored_rows_dev, T *uv_stored_cols_dev, 
 
   if (error == hipSuccess) 
     {
-    if (attributes.memoryType == hipMemoryTypeHost) 
+    if (attributes.type == hipMemoryTypeHost) 
       {
       T vav_host_value = *vav_host_or_dev;
       T tau_host_value = *tau_host_or_dev;
@@ -717,7 +717,7 @@ void hip_store_u_v_in_uv_vu_FromC(T *vu_stored_rows_dev, T *uv_stored_cols_dev, 
         }
       } 
     
-    else if (attributes.memoryType == hipMemoryTypeDevice) 
+    else if (attributes.type == hipMemoryTypeDevice) 
       {
 #ifdef WITH_GPU_STREAMS
       hip_store_u_v_in_uv_vu_kernel<<<blocks,threadsPerBlock,0,my_stream>>>(vu_stored_rows_dev, uv_stored_cols_dev, v_row_dev, u_row_dev, 
